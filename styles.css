@@ -1917,6 +1917,7 @@ img {
 .chat-btn-wsp {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     margin-top: 10px;
     background: linear-gradient(135deg, #25D366 0%, #1ea952 100%);
@@ -1924,10 +1925,13 @@ img {
     text-decoration: none !important;
     font-weight: 700;
     font-size: 13px;
-    padding: 9px 15px;
+    padding: 10px 16px;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
     transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
 }
 
 .chat-btn-wsp:hover {

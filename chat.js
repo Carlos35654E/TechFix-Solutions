@@ -73,43 +73,47 @@ document.addEventListener('DOMContentLoaded', () => {
         let escaped = text
             .replace(/&/g, '&amp;')
             .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;');
+            .replace(/>/g, '&gt;')
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 
-        // Enlaces [texto](url) con detección especial para WhatsApp
-        escaped = escaped.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, (match, label, url) => {
+        const wspIcon = '<svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.53 7.33C9.33 7.33 9.03 7.41 8.78 7.68C8.54 7.94 7.86 8.58 7.86 9.87C7.86 11.16 8.8 12.41 8.93 12.59C9.07 12.77 10.74 15.34 13.3 16.44C13.91 16.7 14.39 16.86 14.76 16.98C15.37 17.17 15.93 17.15 16.37 17.08C16.87 17.01 17.88 16.47 18.09 15.88C18.3 15.29 18.3 14.79 18.23 14.68C18.17 14.58 18.02 14.52 17.75 14.39C17.48 14.26 16.17 13.61 15.93 13.52C15.68 13.44 15.5 13.39 15.32 13.66C15.14 13.93 14.63 14.52 14.47 14.71C14.32 14.89 14.17 14.92 13.9 14.79C13.63 14.65 12.78 14.38 11.76 13.47C10.97 12.76 10.43 11.89 10.28 11.63C10.13 11.36 10.26 11.22 10.4 11.08C10.52 10.96 10.67 10.77 10.81 10.61C10.95 10.44 11 10.32 11.09 10.13C11.18 9.95 11.14 9.79 11.07 9.66C11 9.53 10.49 8.27 10.28 7.76C10.08 7.27 9.87 7.33 9.71 7.33H9.53Z"/></svg>';
+
+        function renderLink(match, label, url) {
             if (url.includes('wa.me')) {
-                return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="chat-btn-wsp">
-                    <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.53 7.33C9.33 7.33 9.03 7.41 8.78 7.68C8.54 7.94 7.86 8.58 7.86 9.87C7.86 11.16 8.8 12.41 8.93 12.59C9.07 12.77 10.74 15.34 13.3 16.44C13.91 16.7 14.39 16.86 14.76 16.98C15.37 17.17 15.93 17.15 16.37 17.08C16.87 17.01 17.88 16.47 18.09 15.88C18.3 15.29 18.3 14.79 18.23 14.68C18.17 14.58 18.02 14.52 17.75 14.39C17.48 14.26 16.17 13.61 15.93 13.52C15.68 13.44 15.5 13.39 15.32 13.66C15.14 13.93 14.63 14.52 14.47 14.71C14.32 14.89 14.17 14.92 13.9 14.79C13.63 14.65 12.78 14.38 11.76 13.47C10.97 12.76 10.43 11.89 10.28 11.63C10.13 11.36 10.26 11.22 10.4 11.08C10.52 10.96 10.67 10.77 10.81 10.61C10.95 10.44 11 10.32 11.09 10.13C11.18 9.95 11.14 9.79 11.07 9.66C11 9.53 10.49 8.27 10.28 7.76C10.08 7.27 9.87 7.33 9.71 7.33H9.53Z"/></svg>
-                    <span>${label}</span>
-                </a>`;
+                return '<a href="' + url + '" target="_blank" rel="noopener noreferrer" class="chat-btn-wsp">' + wspIcon + '<span>' + label + '</span></a>';
             }
-            return `<a href="${url}" target="_blank" rel="noopener noreferrer" style="color: #1D63ED; font-weight: 600; text-decoration: underline;">${label}</a>`;
-        });
+            return '<a href="' + url + '" target="_blank" rel="noopener noreferrer" style="color: #1D63ED; font-weight: 600; text-decoration: underline;">' + label + '</a>';
+        }
 
-        // Negrita **texto**
-        escaped = escaped.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-
-        // Procesar listas por viñetas
+        // Procesar listas por viñetas y párrafos
         const lines = escaped.split('\n');
         let html = '';
         let inList = false;
 
         lines.forEach(line => {
             const trimmed = line.trim();
+            if (!trimmed) {
+                if (inList) {
+                    html += '</ul>';
+                    inList = false;
+                }
+                return;
+            }
+
             if (trimmed.startsWith('* ') || trimmed.startsWith('- ')) {
                 if (!inList) {
                     html += '<ul>';
                     inList = true;
                 }
-                html += `<li>${trimmed.substring(2)}</li>`;
+                const parsed = trimmed.substring(2).replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, renderLink);
+                html += '<li>' + parsed + '</li>';
             } else {
                 if (inList) {
                     html += '</ul>';
                     inList = false;
                 }
-                if (trimmed.length > 0) {
-                    html += `<p>${trimmed}</p>`;
-                }
+                const parsed = trimmed.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, renderLink);
+                html += '<p>' + parsed + '</p>';
             }
         });
 
@@ -117,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
             html += '</ul>';
         }
 
-        return html || `<p>${escaped}</p>`;
+        return html || '<p>' + escaped + '</p>';
     }
 
     // Backdrop oscuro para dispositivos móviles
