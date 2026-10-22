@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Trabajos y Reseñas - TechFix Solutions</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+    <div class="barra-superior">
+        <div class="barra-superior-contenedor">
+            <div class="barra-estado">
+                <span class="punto-activo"></span>
+                <span>Servicio Activo en San Salvador y Zonas Aledañas</span>
+            </div>
+            <div class="barra-telefonos">
+                <span>Atención: </span>
+                <a href="tel:+50371033085">+503 7103-3085</a>
+                <span> / </span>
+                <a href="tel:+50322220000">+503 2222-0000</a>
+            </div>
+        </div>
+    </div>
+
+    <header class="cabecera">
+        <div class="cabecera-contenedor">
+            <a href="../" class="logo-zona">
+                <img src="../img/logo.png" alt="Logo TechFix Solutions">
+                <div class="logo-texto">
+                    <span class="logo-titulo">TechFix <span>Solutions</span></span>
+                    <span class="logo-subtitulo">Servicio Técnico a Domicilio</span>
+                </div>
+            </a>
+            <!-- Botón Menú Hamburguesa Móvil -->
+            <button class="menu-hamburguesa" id="menu-hamburguesa" aria-label="Abrir menú de navegación" aria-expanded="false">
+                <span class="linea-hamburguesa"></span>
+                <span class="linea-hamburguesa"></span>
+                <span class="linea-hamburguesa"></span>
+            </button>
+
+            <nav class="navegacion" id="navegacion-menu">
+                <a href="../">Inicio</a>
+                <a href="../nosotros/">Nosotros</a>
+                <a href="../mantenimientos/">Mantenimientos</a>
+                <a href="../comparativa/">Comparativa</a>
+                <a href="../ofertas/">Ofertas</a>
+                <a href="../galeria/" class="activo">Galería</a>
+                <a href="https://wa.me/50371033085?text=Hola%20TechFix,%20necesito%20una%20revisi%C3%B3n%20t%C3%A9cnica%20a%20domicilio." target="_blank" class="boton boton-menu">Pedir Técnico</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="seccion" style="padding-bottom: 20px;">
+        <div class="contenedor">
+            <span class="etiqueta cian">Evidencia y Confianza</span>
+            <h1 class="titulo-seccion" style="font-size: 34px; margin-top: 8px;">Galería de Trabajos y Reseñas</h1>
+            <p class="subtitulo-seccion">
+                Transparencia total en cada visita técnica. Conoce cómo realizamos nuestros procedimientos en laptops, computadoras y redes, además de las opiniones de quienes ya confiaron en nuestro servicio.
+            </p>
+
+            <!-- 1. Cuadrícula de Galería de Trabajos -->
+            <div class="seccion-cabecera" style="margin-top: 20px; text-align: left;">
+                <span class="etiqueta">Procedimientos Reales</span>
+                <h2 class="titulo-seccion" style="font-size: 26px;">Estándar Técnico a Domicilio</h2>
+                <p class="subtitulo-seccion" style="margin-left: 0;">Trabajamos frente a ti con insumos de alta calidad, pulsera antiestática e instrumental de precisión.</p>
+            </div>
+
+            <div class="galeria-grid">
+                <!-- Tarjeta 1: Pasta Térmica -->
+                <div class="galeria-card">
+                    <div class="galeria-img-wrap">
+                        <img src="../img/galeria-pasta-termica.jpg" alt="Cambio de pasta térmica en laptop" loading="lazy">
+                        <span class="galeria-badge">Preventivo</span>
+                    </div>
+                    <div class="galeria-info">
+                        <h3>Aplicación de Pasta Térmica</h3>
+                        <p>Desensamble minucioso y aplicación de compuesto térmico de alta disipación en procesador (CPU) y chip gráfico (GPU) para reducir temperaturas de 15°C a 20°C.</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2: Antes y Después Ventiladores -->
+                <div class="galeria-card">
+                    <div class="galeria-img-wrap">
+                        <img src="../img/galeria-antes-despues.jpg" alt="Antes y después de limpieza de ventiladores" loading="lazy">
+                        <span class="galeria-badge">Limpieza Profunda</span>
+                    </div>
+                    <div class="galeria-info">
+                        <h3>Ventiladores: Antes vs. Después</h3>
+                        <p>Eliminación de motas de pelusa y polvo acumulado en aspas y rejillas de cobre con aire a presión y pincel antiestático, restaurando el flujo de aire original del equipo.</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3: Actualización SSD -->
+                <div class="galeria-card">
+                    <div class="galeria-img-wrap">
+                        <img src="../img/galeria-instalacion-ssd.jpg" alt="Instalación de unidad SSD NVMe" loading="lazy">
+                        <span class="galeria-badge">Correctivo / Upgrade</span>
+                    </div>
+                    <div class="galeria-info">
+                        <h3>Actualización a Disco SSD NVMe</h3>
+                        <p>Sustitución de discos mecánicos lentos por unidades de estado sólido de alta velocidad con clonación íntegra de archivos y programas sin perder información.</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 4: Redes y Conectividad -->
+                <div class="galeria-card">
+                    <div class="galeria-img-wrap">
+                        <img src="../img/galeria-diagnostico-redes.jpg" alt="Certificación y testeo de cable de red" loading="lazy">
+                        <span class="galeria-badge">Redes y Wi-Fi</span>
+                    </div>
+                    <div class="galeria-info">
+                        <h3>Certificación de Red y Cableado</h3>
+                        <p>Pruebas de continuidad con tester digital en cables Cat6 y optimización de bandas Wi-Fi 2.4/5GHz para eliminar zonas muertas y caídas de señal en casas u oficinas.</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Muro de Reseñas y Comentarios en Vivo -->
+            <div class="resenas-contenedor">
+                <div class="seccion-cabecera" style="text-align: left; margin-bottom: 25px;">
+                    <span class="etiqueta">Experiencias Reales</span>
+                    <h2 class="titulo-seccion" style="font-size: 28px;">Reseñas de Clientes</h2>
+                    <p class="subtitulo-seccion" style="margin-left: 0;">Opiniones verificadas de clientes que ya probaron el servicio. Si recibiste atención técnica, comparte tu experiencia abajo.</p>
+                </div>
+
+                <!-- Formulario interactivo para dejar una reseña -->
+                <div class="form-resena-card">
+                    <div class="form-resena-header">
+                        <h3>¿Ya atendimos tu equipo? Déjanos tu opinión</h3>
+                        <p>Tu reseña ayuda a otras personas a conocer la calidad y transparencia de nuestro trabajo a domicilio.</p>
+                    </div>
+
+                    <form id="form-nueva-resena">
+                        <div class="resena-form-grid">
+                            <div class="form-grupo">
+                                <label for="resena-nombre">Nombre o Iniciales *</label>
+                                <input type="text" id="resena-nombre" class="form-input" placeholder="Ej. Carlos Arriola" maxlength="50" required />
+                            </div>
+
+                            <div class="form-grupo">
+                                <label>Calificación del Servicio *</label>
+                                <div class="estrellas-selector" title="Selecciona tu calificación">
+                                    <input type="radio" id="star5" name="calificacion" value="5" checked />
+                                    <label for="star5" title="5 estrellas">★</label>
+                                    <input type="radio" id="star4" name="calificacion" value="4" />
+                                    <label for="star4" title="4 estrellas">★</label>
+                                    <input type="radio" id="star3" name="calificacion" value="3" />
+                                    <label for="star3" title="3 estrellas">★</label>
+                                    <input type="radio" id="star2" name="calificacion" value="2" />
+                                    <label for="star2" title="2 estrellas">★</label>
+                                    <input type="radio" id="star1" name="calificacion" value="1" />
+                                    <label for="star1" title="1 estrella">★</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-grupo">
+                            <label for="resena-comentario">Tu Comentario o Experiencia *</label>
+                            <textarea id="resena-comentario" class="form-textarea" rows="3" placeholder="Cuéntanos qué te pareció el servicio, la puntualidad y el trabajo frente a ti..." maxlength="600" required></textarea>
+                        </div>
+
+                        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 14px;">
+                            <div class="form-aviso-ia">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="#64748b"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 15h-2v-6h2zm0-8h-2V7h2z"/></svg>
+                                <span>Publicación moderada por IA: no se admiten groserías ni spam.</span>
+                            </div>
+
+                            <button type="submit" id="btn-enviar-resena" class="boton boton-primario">
+                                Publicar Reseña
+                            </button>
+                        </div>
+
+                        <div id="alerta-resena" class="alerta-resena"></div>
+                    </form>
+                </div>
+
+                <!-- Feed de comentarios en tiempo real -->
+                <div class="muro-comentarios" id="muro-comentarios-lista">
+                    <!-- Se cargan dinámicamente desde la API /api/reviews -->
+                    <div style="text-align: center; padding: 30px; color: #64748b;">
+                        Cargando reseñas verificadas...
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="pie-pagina">
+        <div class="contenedor">
+            <div class="pie-grid">
+                <div class="pie-columna">
+                    <h3>TechFix <span>Solutions</span></h3>
+                    <p>
+                        "Tu tecnología funcionando sin salir de casa". Servicio técnico especializado de computadoras y redes a domicilio en San Salvador.
+                    </p>
+                    <p style="margin-top: 8px; font-size: 12px; color: #cbd5e1;">
+                        Proyecto Técnico Módulo 2.7 y Módulo 2.8 - Sección 2-3 DS
+                    </p>
+                </div>
+
+                <div class="pie-columna">
+                    <h4>Navegación</h4>
+                    <ul class="pie-enlaces">
+                        <li><a href="../">Inicio</a></li>
+                        <li><a href="../nosotros/">Sobre Nosotros</a></li>
+                        <li><a href="../mantenimientos/">Mantenimientos</a></li>
+                        <li><a href="../comparativa/">Comparativa de Mercado</a></li>
+                        <li><a href="../ofertas/">Ofertas de Lanzamiento</a></li>
+                        <li><a href="../galeria/">Galería y Reseñas</a></li>
+                    </ul>
+                </div>
+
+                <div class="pie-columna">
+                    <h4>Cobertura y Contacto</h4>
+                    <ul class="pie-lista">
+                        <li>San Salvador y municipios aledaños a domicilio.</li>
+                        <li>Correo: soporte.techfix.sv@gmail.com</li>
+                        <li>Tel: +503 7103-3085 / +503 2222-0000</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pie-inferior">
+                <p>&copy; 2026 TechFix Solutions. Todos los derechos reservados. San Salvador, El Salvador.</p>
+                <div class="redes-sociales">
+                    <a href="https://wa.me/50371033085" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                        <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.53 7.33C9.33 7.33 9.03 7.41 8.78 7.68C8.54 7.94 7.86 8.58 7.86 9.87C7.86 11.16 8.8 12.41 8.93 12.59C9.07 12.77 10.74 15.34 13.3 16.44C13.91 16.7 14.39 16.86 14.76 16.98C15.37 17.17 15.93 17.15 16.37 17.08C16.87 17.01 17.88 16.47 18.09 15.88C18.3 15.29 18.3 14.79 18.23 14.68C18.17 14.58 18.02 14.52 17.75 14.39C17.48 14.26 16.17 13.61 15.93 13.52C15.68 13.44 15.5 13.39 15.32 13.66C15.14 13.93 14.63 14.52 14.47 14.71C14.32 14.89 14.17 14.92 13.9 14.79C13.63 14.65 12.78 14.38 11.76 13.47C10.97 12.76 10.43 11.89 10.28 11.63C10.13 11.36 10.26 11.22 10.4 11.08C10.52 10.96 10.67 10.77 10.81 10.61C10.95 10.44 11 10.32 11.09 10.13C11.18 9.95 11.14 9.79 11.07 9.66C11 9.53 10.49 8.27 10.28 7.76C10.08 7.27 9.87 7.33 9.71 7.33H9.53Z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón Flotante para Abrir el Chat -->
+    <button id="chat-toggle-btn" class="chat-toggle-btn" aria-label="Abrir asistente virtual TechFix IA" title="¿Necesitas ayuda? Chatea con TechFix IA">
+        <svg viewBox="0 0 24 24">
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2m0 14H6l-2 2V4h16v12z"/>
+        </svg>
+        <span class="chat-toggle-badge"></span>
+        <span class="tooltip-chat">¿Dudas? Habla con nuestra IA</span>
+    </button>
+
+    <!-- Contenedor del Chatbot -->
+    <div id="chat-container" class="chat-container hidden" role="dialog" aria-labelledby="chat-titulo">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <div class="chat-avatar-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2M7.5 13A2.5 2.5 0 0 0 5 15.5 2.5 2.5 0 0 0 7.5 18a2.5 2.5 0 0 0 2.5-2.5A2.5 2.5 0 0 0 7.5 13m9 0a2.5 2.5 0 0 0-2.5 2.5 2.5 2.5 0 0 0 2.5 2.5 2.5 2.5 0 0 0 2.5-2.5 2.5 2.5 0 0 0-2.5-2.5"/>
+                    </svg>
+                </div>
+                <div class="chat-header-texto">
+                    <span id="chat-titulo" class="chat-header-titulo">TechFix IA</span>
+                    <span class="chat-header-estado">
+                        <span class="status-dot-pulse"></span>
+                        <span>Asistente en línea</span>
+                    </span>
+                </div>
+            </div>
+            <div class="chat-header-acciones">
+                <button type="button" id="chat-reset-btn" class="chat-btn-icono" title="Reiniciar conversación" aria-label="Reiniciar conversación">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+                    </svg>
+                </button>
+                <button type="button" id="chat-close-btn" class="chat-btn-icono" title="Cerrar chat" aria-label="Cerrar chat">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="chat-messages" class="chat-messages">
+            <div class="chat-msg bot">
+                <p><strong>¡Hola! Soy TechFix IA</strong>, tu asistente virtual a domicilio.</p>
+                <p>¿En qué te puedo ayudar hoy? Puedes preguntarme sobre nuestros mantenimientos, promociones o cómo agendar una visita técnica.</p>
+            </div>
+            <div class="chat-suggestions" id="chat-suggestions">
+                <button type="button" class="chat-chip" data-query="¿Cuáles son los tipos de mantenimiento y qué incluyen?">Mantenimientos</button>
+                <button type="button" class="chat-chip" data-query="¿Qué ofertas o promociones tienen vigentes?">Ofertas y Descuentos</button>
+                <button type="button" class="chat-chip" data-query="¿En qué zonas atienden a domicilio?">Cobertura a Domicilio</button>
+                <button type="button" class="chat-chip" data-query="¿Cómo puedo pedir un técnico por WhatsApp?">Pedir Técnico</button>
+            </div>
+        </div>
+
+        <form id="chat-form" class="chat-input-area">
+            <div class="chat-form-row">
+                <input type="text" id="chat-input" placeholder="Escribe tu consulta aquí..." autocomplete="off" required />
+                <button type="submit" id="chat-send-btn" aria-label="Enviar mensaje" title="Enviar">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="chat-footer-note">TechFix Solutions · Respuestas con IA a domicilio</div>
+        </form>
+    </div>
+
+    <!-- Script del Chatbot -->
+    <script src="../chat.js"></script>
+
+    <!-- Script para Muro de Reseñas y Moderación IA -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const muroLista = document.getElementById('muro-comentarios-lista');
+            const form = document.getElementById('form-nueva-resena');
+            const btnEnviar = document.getElementById('btn-enviar-resena');
+            const alerta = document.getElementById('alerta-resena');
+
+            function obtenerIniciales(nombre) {
+                if (!nombre) return 'TF';
+                const partes = nombre.trim().split(/\s+/);
+                if (partes.length >= 2) {
+                    return (partes[0][0] + partes[1][0]).toUpperCase();
+                }
+                return nombre.substring(0, 2).toUpperCase();
+            }
+
+            function escaparHtml(texto) {
+                if (!texto) return '';
+                return String(texto)
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;');
+            }
+
+            function formatearFechaRelativa(fechaStr) {
+                if (!fechaStr) return 'Reciente';
+                const d = new Date(fechaStr.endsWith('Z') ? fechaStr : fechaStr.replace(' ', 'T') + 'Z');
+                if (isNaN(d.getTime())) return fechaStr;
+
+                return d.toLocaleDateString('es-SV', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+            }
+
+            function generarEstrellas(cant) {
+                const num = Math.max(1, Math.min(5, parseInt(cant, 10) || 5));
+                return '★'.repeat(num) + '☆'.repeat(5 - num);
+            }
+
+            function crearTarjetaComentario(r) {
+                const iniciales = escaparHtml(obtenerIniciales(r.name));
+                const nombre = escaparHtml(r.name);
+                const estrellas = generarEstrellas(r.rating);
+                const fecha = escaparHtml(formatearFechaRelativa(r.created_at));
+                const comentario = escaparHtml(r.comment);
+
+                return `
+                    <div class="comentario-item" id="review-${r.id || Date.now()}">
+                        <div class="comentario-header">
+                            <div class="comentario-autor">
+                                <div class="comentario-avatar">${iniciales}</div>
+                                <div class="comentario-datos">
+                                    <div class="comentario-nombre">
+                                        <span>${nombre}</span>
+                                        <span class="badge-verificado">Servicio a Domicilio Verificado</span>
+                                    </div>
+                                    <span class="comentario-fecha">${fecha}</span>
+                                </div>
+                            </div>
+                            <div class="comentario-estrellas" title="${r.rating} de 5 estrellas">
+                                ${estrellas}
+                            </div>
+                        </div>
+                        <p class="comentario-texto">${comentario}</p>
+                    </div>
+                `;
+            }
+
+            async function cargarResenas() {
+                try {
+                    const res = await fetch('https://api.techfixsolutions.online/api/reviews');
+                    if (!res.ok) throw new Error('Error al consultar');
+                    const lista = await res.json();
+
+                    if (!lista || lista.length === 0) {
+                        muroLista.innerHTML = '<div style="text-align: center; padding: 30px; color: #64748b;">Aún no hay comentarios publicados. ¡Sé el primero en dejar tu opinión!</div>';
+                        return;
+                    }
+
+                    muroLista.innerHTML = lista.map(crearTarjetaComentario).join('');
+                } catch (err) {
+                    console.error('Error cargando reseñas:', err);
+                    muroLista.innerHTML = '<div style="text-align: center; padding: 30px; color: #94a3b8;">No se pudieron cargar las reseñas en este momento.</div>';
+                }
+            }
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const nombre = document.getElementById('resena-nombre').value.trim();
+                const calificacionEl = document.querySelector('input[name="calificacion"]:checked');
+                const calificacion = calificacionEl ? calificacionEl.value : 5;
+                const comentario = document.getElementById('resena-comentario').value.trim();
+
+                if (!nombre || !comentario) return;
+
+                btnEnviar.disabled = true;
+                btnEnviar.textContent = 'Verificando con IA...';
+                alerta.style.display = 'none';
+                alerta.className = 'alerta-resena';
+
+                try {
+                    const res = await fetch('https://api.techfixsolutions.online/api/reviews', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            name: nombre,
+                            rating: calificacion,
+                            comment: comentario
+                        })
+                    });
+
+                    const data = await res.json();
+
+                    if (res.ok && data.success) {
+                        alerta.textContent = data.message || 'Tu reseña fue publicada con éxito.';
+                        alerta.className = 'alerta-resena exito';
+                        alerta.style.display = 'block';
+
+                        form.reset();
+
+                        // Insertar comentario arriba en la lista
+                        if (data.review) {
+                            const nuevoHtml = crearTarjetaComentario(data.review);
+                            muroLista.insertAdjacentHTML('afterbegin', nuevoHtml);
+                        } else {
+                            cargarResenas();
+                        }
+                    } else {
+                        alerta.textContent = data.error || 'No se pudo publicar tu reseña por incumplimiento de normas.';
+                        alerta.className = 'alerta-resena error';
+                        alerta.style.display = 'block';
+                    }
+                } catch (error) {
+                    console.error('Error enviando reseña:', error);
+                    alerta.textContent = 'Hubo un error de conexión al enviar tu comentario. Intenta de nuevo.';
+                    alerta.className = 'alerta-resena error';
+                    alerta.style.display = 'block';
+                } finally {
+                    btnEnviar.disabled = false;
+                    btnEnviar.textContent = 'Publicar Reseña';
+                }
+            });
+
+            // Carga inicial de reseñas
+            cargarResenas();
+        });
+    </script>
+</body>
+</html>
