@@ -318,11 +318,13 @@
             const inputNombre = document.getElementById('resena-nombre');
             const inputComentario = document.getElementById('resena-comentario');
 
-            // Recordar nombre en el almacenamiento local del navegador (localStorage)
-            const STORAGE_KEY_NOMBRE = 'techfix_reviewer_name';
-            const nombreRecordado = localStorage.getItem(STORAGE_KEY_NOMBRE);
+            // Nombre compartido con el Chatbot TechFix IA en localStorage
+            const STORAGE_KEY_NOMBRE = 'techfix_user_name';
+            const nombreRecordado = localStorage.getItem(STORAGE_KEY_NOMBRE) || localStorage.getItem('techfix_reviewer_name') || '';
             if (nombreRecordado && inputNombre) {
                 inputNombre.value = nombreRecordado;
+                localStorage.setItem(STORAGE_KEY_NOMBRE, nombreRecordado);
+                localStorage.setItem('techfix_reviewer_name', nombreRecordado);
             }
 
             if (inputNombre) {
@@ -330,6 +332,7 @@
                     const val = inputNombre.value.trim();
                     if (val) {
                         localStorage.setItem(STORAGE_KEY_NOMBRE, val);
+                        localStorage.setItem('techfix_reviewer_name', val);
                     }
                 });
             }
@@ -465,6 +468,7 @@
                         if (star5) star5.checked = true;
                         if (nombre) {
                             localStorage.setItem(STORAGE_KEY_NOMBRE, nombre);
+                            localStorage.setItem('techfix_reviewer_name', nombre);
                             inputNombre.value = nombre;
                         }
 

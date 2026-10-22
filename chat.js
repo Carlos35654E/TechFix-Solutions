@@ -47,6 +47,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!toggleBtn || !chatContainer || !chatForm) return;
 
+    // Funciones para compartir el nombre del usuario entre el Chat y las Reseñas
+    function getSharedUserName() {
+        return localStorage.getItem('techfix_user_name') || localStorage.getItem('techfix_reviewer_name') || '';
+    }
+
+    function setSharedUserName(name) {
+        if (!name) return;
+        const clean = name.trim();
+        if (!clean) return;
+        localStorage.setItem('techfix_user_name', clean);
+        localStorage.setItem('techfix_reviewer_name', clean);
+    }
+
+    function extractNameFromText(text) {
+        if (!text) return null;
+        const regex = /(?:(?:hola|buenas|buenos d[ií]as|buenas tardes|buenas noches)[,!\s]+)?(?:soy|me llamo|mi nombre es)\s+([A-ZÁÉÍÓÚÑa-záéíóúñ]{2,}(?:\s+[A-ZÁÉÍÓÚÑa-záéíóúñ]{2,})*)/i;
+        const match = text.match(regex);
+        if (match && match[1]) {
+            const candidate = match[1].trim();
+            const blacklist = ['un', 'una', 'el', 'la', 'nuevo', 'nueva', 'cliente', 'estudiante', 'de', 'de san salvador', 'aqui', 'acá', 'yo'];
+            if (!blacklist.includes(candidate.toLowerCase())) {
+                return candidate.split(/\s+/).map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
+            }
+        }
+        return null;
+    }
+
     // Obtener o generar identificador de sesión único para el visitante
     let sessionId = localStorage.getItem('techfix_session_id');
     if (!sessionId) {
@@ -54,18 +81,39 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('techfix_session_id', sessionId);
     }
 
-    const initialWelcomeHTML = `
-        <div class="chat-msg bot">
-            <p><strong>¡Hola! Soy TechFix IA</strong>, tu asistente virtual a domicilio.</p>
-            <p>¿En qué te puedo ayudar hoy? Puedes preguntarme sobre nuestros mantenimientos, promociones o cómo agendar una visita técnica.</p>
-        </div>
-        <div class="chat-suggestions" id="chat-suggestions">
-            <button type="button" class="chat-chip" data-query="¿Cuáles son los tipos de mantenimiento y qué incluyen?">Mantenimientos</button>
-            <button type="button" class="chat-chip" data-query="¿Qué ofertas o promociones tienen vigentes?">Ofertas y Descuentos</button>
-            <button type="button" class="chat-chip" data-query="¿En qué zonas atienden a domicilio?">Cobertura a Domicilio</button>
-            <button type="button" class="chat-chip" data-query="¿Cómo puedo pedir un técnico por WhatsApp?">Pedir Técnico</button>
-        </div>
-    `;
+    function getInitialWelcomeHTML() {
+        const userName = getSharedUserName();
+        const saludo = userName ? `¡Hola de nuevo, <strong>${userName}</strong>!` : '<strong>¡Hola! Soy TechFix IA</strong>';
+        return `
+            <div class="chat-msg bot">
+                <p>${saludo}, tu asistente virtual a domicilio.</p>
+                <p>¿En qué te puedo ayudar hoy? Puedes preguntarme sobre nuestros mantenimientos, promociones o cómo agendar una visita técnica.</p>
+            </div>
+            <div class="chat-suggestions" id="chat-suggestions">
+                <button type="button" class="chat-chip" data-query="¿Cuáles son los tipos de mantenimiento y qué incluyen?">Mantenimientos</button>
+                <button type="button" class="chat-chip" data-query="¿Qué ofertas o promociones tienen vigentes?">Ofertas y Descuentos</button>
+                <button type="button" class="chat-chip" data-query="¿En qué zonas atienden a domicilio?">Cobertura a Domicilio</button>
+                <button type="button" class="chat-chip" data-query="¿Cómo puedo pedir un técnico por WhatsApp?">Pedir Técnico</button>
+            </div>
+        `;
+    }
+
+    // Manejo del historial persistente de chat en localStorage
+    let chatHistory = [];
+    try {
+        const savedHistory = localStorage.getItem('techfix_chat_history');
+        if (savedHistory) chatHistory = JSON.parse(savedHistory);
+    } catch (e) {
+        chatHistory = [];
+    }
+
+    function saveHistory() {
+        try {
+            localStorage.setItem('techfix_chat_history', JSON.stringify(chatHistory.slice(-50)));
+        } catch (e) {
+            console.warn('Error guardando historial de chat:', e);
+        }
+    }
 
     // Formatear texto simple (negrita, listas, saltos de línea y enlaces)
     function formatMarkdown(text) {
@@ -208,10 +256,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    function restoreChat() {
+        if (chatHistory && chatHistory.length > 0) {
+            chatMessages.innerHTML = '';
+            chatHistory.forEach(item => {
+                const msgDiv = document.createElement('div');
+                msgDiv.className = 'chat-msg ' + item.sender;
+                if (item.sender === 'bot') {
+                    msgDiv.innerHTML = formatMarkdown(item.text);
+                } else {
+                    msgDiv.textContent = item.text;
+                }
+                chatMessages.appendChild(msgDiv);
+            });
+            scrollChatToBottom();
+        } else {
+            chatMessages.innerHTML = getInitialWelcomeHTML();
+            rebindSuggestionChips();
+        }
+    }
+
     // Reiniciar conversación
     if (resetBtn) {
         resetBtn.addEventListener('click', () => {
-            chatMessages.innerHTML = initialWelcomeHTML;
+            chatHistory = [];
+            localStorage.removeItem('techfix_chat_history');
+            chatMessages.innerHTML = getInitialWelcomeHTML();
             rebindSuggestionChips();
             chatInput.value = '';
             if (!isMobileDevice()) {
@@ -222,6 +292,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Imprimir mensaje del usuario
     function appendUserMessage(text) {
+        // Detectar si el usuario se presentó con su nombre
+        const detectedName = extractNameFromText(text);
+        if (detectedName) {
+            setSharedUserName(detectedName);
+        }
+
+        chatHistory.push({ sender: 'user', text: text });
+        saveHistory();
+
         const msgDiv = document.createElement('div');
         msgDiv.className = 'chat-msg user';
         msgDiv.textContent = text;
@@ -247,6 +326,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function appendBotMessage(text) {
         removeTypingIndicator();
+
+        chatHistory.push({ sender: 'bot', text: text });
+        saveHistory();
+
         const msgDiv = document.createElement('div');
         msgDiv.className = 'chat-msg bot';
         msgDiv.innerHTML = formatMarkdown(text);
@@ -277,12 +360,17 @@ document.addEventListener('DOMContentLoaded', () => {
         showTypingIndicator();
 
         try {
+            const userName = getSharedUserName();
             const response = await fetch('https://api.techfixsolutions.online/api/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ message: text, sessionId: sessionId })
+                body: JSON.stringify({
+                    message: text,
+                    sessionId: sessionId,
+                    userName: userName
+                })
             });
 
             if (!response.ok) {
@@ -324,7 +412,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    rebindSuggestionChips();
+    // Restaurar historial o cargar saludo de bienvenida
+    restoreChat();
 
     // ==========================================
     // ACORDEÓN DE PREGUNTAS FRECUENTES (FAQ)
