@@ -1,4 +1,40 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // ==========================================
+    // MENÚ HAMBURGUESA MÓVIL
+    // ==========================================
+    const menuBtn = document.getElementById('menu-hamburguesa');
+    const navMenu = document.getElementById('navegacion-menu');
+
+    if (menuBtn && navMenu) {
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = navMenu.classList.toggle('abierto');
+            menuBtn.classList.toggle('activo');
+            menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+
+        // Cerrar menú al hacer clic en cualquier enlace
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('abierto');
+                menuBtn.classList.remove('activo');
+                menuBtn.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Cerrar menú al hacer clic fuera
+        document.addEventListener('click', (e) => {
+            if (!menuBtn.contains(e.target) && !navMenu.contains(e.target)) {
+                navMenu.classList.remove('abierto');
+                menuBtn.classList.remove('activo');
+                menuBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
+
+    // ==========================================
+    // WIDGET ASISTENTE IA TECHFIX
+    // ==========================================
     const toggleBtn = document.getElementById('chat-toggle-btn');
     const chatContainer = document.getElementById('chat-container');
     const closeBtn = document.getElementById('chat-close-btn');

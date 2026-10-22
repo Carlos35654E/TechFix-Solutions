@@ -130,6 +130,25 @@ body {
     letter-spacing: 0.5px;
 }
 
+/* Botón Hamburguesa (oculto en desktop) */
+.menu-hamburguesa {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 101;
+}
+
+.linea-hamburguesa {
+    display: block;
+    width: 22px;
+    height: 2.5px;
+    background-color: var(--texto-oscuro);
+    border-radius: 2px;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, background-color 0.25s ease;
+}
+
 .navegacion {
     display: flex;
     align-items: center;
@@ -1109,6 +1128,131 @@ img {
 }
 
 @media (max-width: 850px) {
+    .cabecera {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .cabecera-contenedor {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 18px;
+        position: relative;
+    }
+
+    /* Mostrar botón hamburguesa en tablets y móviles */
+    .menu-hamburguesa {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        background-color: var(--fondo-gris);
+        border: 1.5px solid var(--borde);
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .menu-hamburguesa:hover {
+        background-color: var(--azul-fondo);
+        border-color: #bfdbfe;
+    }
+
+    /* Animación de 3 líneas a X */
+    .menu-hamburguesa.activo .linea-hamburguesa:nth-child(1) {
+        transform: translateY(7.5px) rotate(45deg);
+        background-color: var(--azul-principal);
+    }
+
+    .menu-hamburguesa.activo .linea-hamburguesa:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+
+    .menu-hamburguesa.activo .linea-hamburguesa:nth-child(3) {
+        transform: translateY(-7.5px) rotate(-45deg);
+        background-color: var(--azul-principal);
+    }
+
+    /* Menú desplegable móvil elegante */
+    .navegacion {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        border-bottom: 3px solid var(--azul-principal);
+        box-shadow: 0 20px 35px -5px rgba(11, 19, 41, 0.16);
+        display: flex;
+        flex-direction: column;
+        padding: 14px 18px 20px 18px;
+        gap: 8px;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(-12px);
+        transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s;
+        z-index: 999;
+    }
+
+    .navegacion.abierto {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    .navegacion a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 14.5px;
+        font-weight: 600;
+        padding: 11px 16px;
+        border-radius: 8px;
+        background-color: var(--fondo-gris);
+        border: 1px solid var(--borde);
+        color: var(--texto-oscuro);
+        transition: all 0.15s ease;
+    }
+
+    .navegacion a:hover {
+        background-color: var(--azul-fondo);
+        color: var(--azul-principal);
+        border-color: #bfdbfe;
+    }
+
+    .navegacion a.activo {
+        background-color: var(--azul-principal);
+        color: #ffffff !important;
+        border-color: var(--azul-principal);
+        font-weight: 700;
+    }
+
+    .boton-menu {
+        margin-left: 0 !important;
+        margin-top: 6px;
+        background-color: var(--naranja) !important;
+        color: #ffffff !important;
+        border: none !important;
+        justify-content: center !important;
+        text-align: center !important;
+        font-size: 15px !important;
+        font-weight: 700;
+        padding: 13px 18px !important;
+        border-radius: 8px !important;
+        box-shadow: 0 4px 14px rgba(249, 115, 22, 0.28);
+    }
+
+    .boton-menu:hover {
+        background-color: var(--naranja-oscuro) !important;
+    }
+
     .portada-grid {
         grid-template-columns: 1fr;
         gap: 32px;
@@ -1165,17 +1309,8 @@ img {
         font-size: 11px;
     }
 
-    /* Cabecera y Navegación tipo barra de pestañas scrollable */
-    .cabecera {
-        position: sticky;
-        top: 0;
-    }
-
     .cabecera-contenedor {
-        flex-direction: column;
-        align-items: flex-start;
         padding: 10px 14px;
-        gap: 10px;
     }
 
     .logo-zona img {
@@ -1184,46 +1319,6 @@ img {
 
     .logo-titulo {
         font-size: 18px;
-    }
-
-    .navegacion {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        overflow-x: auto;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        padding: 2px 2px 6px 2px;
-    }
-
-    .navegacion::-webkit-scrollbar {
-        display: none;
-    }
-
-    .navegacion a {
-        flex-shrink: 0;
-        font-size: 12.5px;
-        padding: 6px 12px;
-        border-radius: 20px;
-        background-color: var(--fondo-gris);
-        border: 1px solid var(--borde);
-    }
-
-    .navegacion a.activo {
-        background-color: var(--azul-principal);
-        color: #ffffff !important;
-        border-color: var(--azul-principal);
-    }
-
-    .boton-menu {
-        flex-shrink: 0;
-        margin-left: 0 !important;
-        padding: 6px 14px !important;
-        border-radius: 20px !important;
-        background-color: transparent !important;
-        color: var(--azul-principal) !important;
     }
 
     /* Portada y Hero */
