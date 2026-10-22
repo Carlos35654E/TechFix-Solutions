@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+﻿document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // MENÚ HAMBURGUESA MÓVIL
     // ==========================================
@@ -214,11 +214,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (data.reply) {
                 appendBotMessage(data.reply);
             } else {
-                appendBotMessage('No recibí una respuesta adecuada. Si deseas atención directa, escríbenos al WhatsApp: +503 7654-3210.');
+                appendBotMessage('No recibí una respuesta adecuada. Si deseas atención directa, escríbenos al WhatsApp: +503 7103-3085.');
             }
         } catch (error) {
             console.error('Error con TechFix IA:', error);
-            appendBotMessage('Hubo un pequeño corte de conexión con el asistente. Puedes comunicarte directamente al WhatsApp **+503 7654-3210**.');
+            appendBotMessage('Hubo un pequeño corte de conexión con el asistente. Puedes comunicarte directamente al WhatsApp **+503 7103-3085**.');
         } finally {
             chatInput.disabled = false;
             sendBtn.disabled = false;
