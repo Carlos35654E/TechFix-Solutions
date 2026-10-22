@@ -47,6 +47,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!toggleBtn || !chatContainer || !chatForm) return;
 
+    // Obtener o generar identificador de sesión único para el visitante
+    let sessionId = localStorage.getItem('techfix_session_id');
+    if (!sessionId) {
+        sessionId = 'user_' + Math.random().toString(36).substring(2, 9) + Date.now().toString(36);
+        localStorage.setItem('techfix_session_id', sessionId);
+    }
+
     const initialWelcomeHTML = `
         <div class="chat-msg bot">
             <p><strong>¡Hola! Soy TechFix IA</strong>, tu asistente virtual a domicilio.</p>
@@ -196,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ message: text })
+                body: JSON.stringify({ message: text, sessionId: sessionId })
             });
 
             if (!response.ok) {
