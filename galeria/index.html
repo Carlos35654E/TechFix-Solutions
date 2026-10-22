@@ -408,18 +408,28 @@
                 alerta.style.display = 'none';
                 alerta.className = 'alerta-resena';
 
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 7000);
+
                 try {
                     const res = await fetch('https://api.techfixsolutions.online/api/reviews', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
+                        signal: controller.signal,
                         body: JSON.stringify({
                             name: nombre,
                             rating: calificacion,
                             comment: comentario
                         })
                     });
+                    clearTimeout(timeoutId);
 
-                    const data = await res.json();
+                    let data = {};
+                    try {
+                        data = await res.json();
+                    } catch (err) {
+                        data = { success: false, error: 'Respuesta inválida del servidor (' + res.status + ')' };
+                    }
 
                     if (res.ok && data.success) {
                         alerta.textContent = data.message || 'Tu reseña fue publicada con éxito.';
@@ -441,8 +451,13 @@
                         alerta.style.display = 'block';
                     }
                 } catch (error) {
+                    clearTimeout(timeoutId);
                     console.error('Error enviando reseña:', error);
-                    alerta.textContent = 'Hubo un error de conexión al enviar tu comentario. Intenta de nuevo.';
+                    if (error.name === 'AbortError') {
+                        alerta.textContent = 'El servidor tardó más de lo esperado. Por favor presiona publicar nuevamente.';
+                    } else {
+                        alerta.textContent = 'Hubo un inconveniente de conexión al enviar tu comentario. Intenta de nuevo.';
+                    }
                     alerta.className = 'alerta-resena error';
                     alerta.style.display = 'block';
                 } finally {
