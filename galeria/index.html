@@ -315,6 +315,24 @@
             const form = document.getElementById('form-nueva-resena');
             const btnEnviar = document.getElementById('btn-enviar-resena');
             const alerta = document.getElementById('alerta-resena');
+            const inputNombre = document.getElementById('resena-nombre');
+            const inputComentario = document.getElementById('resena-comentario');
+
+            // Recordar nombre en el almacenamiento local del navegador (localStorage)
+            const STORAGE_KEY_NOMBRE = 'techfix_reviewer_name';
+            const nombreRecordado = localStorage.getItem(STORAGE_KEY_NOMBRE);
+            if (nombreRecordado && inputNombre) {
+                inputNombre.value = nombreRecordado;
+            }
+
+            if (inputNombre) {
+                inputNombre.addEventListener('input', () => {
+                    const val = inputNombre.value.trim();
+                    if (val) {
+                        localStorage.setItem(STORAGE_KEY_NOMBRE, val);
+                    }
+                });
+            }
 
             function obtenerIniciales(nombre) {
                 if (!nombre) return 'TF';
@@ -441,7 +459,14 @@
                         alerta.className = 'alerta-resena exito';
                         alerta.style.display = 'block';
 
-                        form.reset();
+                        // Limpiar comentario y resetear estrellas, pero conservar el nombre en el input
+                        inputComentario.value = '';
+                        const star5 = document.getElementById('star5');
+                        if (star5) star5.checked = true;
+                        if (nombre) {
+                            localStorage.setItem(STORAGE_KEY_NOMBRE, nombre);
+                            inputNombre.value = nombre;
+                        }
 
                         // Insertar comentario arriba en la lista
                         if (data.review) {
